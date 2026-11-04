@@ -1,0 +1,33 @@
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|##########| 103/103 [00:00<00:00, 3216.97it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+
+======================================================================
+QUESTION [student_transcripts_tracking]: Who are enrolled in 2 degree programs in one semester? List the first name, middle name and last name and the id.
+======================================================================
+
+--- TURN 0 ---
+[Thought] I need to find students enrolled in 2 degree programs in one semester. Relevant columns: student name (first, middle, last), student id, degree program, semester. Let me search for these columns.
+[Action]  search_column(query=['student first name', 'student middle name', 'student last name', 'student id', 'degree program', 'semester'])
+[Result]  {'student first name': [{'column': 'first_name', 'format': 'text', 'table': 'Students', 'statistics': "e.g: ['Timmothy', 'Hobart', 'Warren']"}, {'column': 'last_name', 'format': 'text', 'table': 'Students', 'statistics': "e.g: ['Ward', 'Balistreri', 'Gleichner']"}, {'column': 'other_student_details', 'format': 'text', 'table': 'Students', 'statistics': "e.g: ['quia', 'autem', 'facilis']"}, {'column': 'student_id', 'format': 'number', 'table': 'Students', 'statistics': 'e.g: [1, 2, 3]'}, {'column': 'middle_name', 'format': 'text', 'table': 'Students', 'statistics': "e.g: ['Anna', 'Lorenz', 'Violet']"}], 'student middle name': [{'column': 'middle_name', 'format': 'text', 'table': 'Students', ' ...(2910 more chars)
+
+--- TURN 1 ---
+[Thought] I have all needed columns. Students.first_name, middle_name, last_name, student_id. Student_Enrolment has student_id, semester_id, degree_program_id. I need students with 2 distinct degree programs in one semester. Let me find the join path.
+[Action]  FindShortestPath(start=['Students.first_name', 'Students.middle_name', 'Students.last_name', 'Students.student_id'], end=['Student_Enrolment.degree_program_id', 'Student_Enrolment.semester_id'])
+[Result]  [('Students.first_name', 'Student_Enrolment.degree_program_id', 'Students.first_name <-> Students.student_id = Student_Enrolment.student_id <-> Student_Enrolment.degree_program_id'), ('Students.first_name', 'Student_Enrolment.semester_id', 'Students.first_name <-> Students.student_id = Student_Enrolment.student_id <-> Student_Enrolment.semester_id'), ('Students.middle_name', 'Student_Enrolment.degree_program_id', 'Students.middle_name <-> Students.student_id = Student_Enrolment.student_id <-> Student_Enrolment.degree_program_id'), ('Students.middle_name', 'Student_Enrolment.semester_id', 'Students.middle_name <-> Students.student_id = Student_Enrolment.student_id <-> Student_Enrolment.semest ...(660 more chars)
+
+--- TURN 2 ---
+[Thought] I'll group by student and semester, having count of distinct degree programs = 2.
+[Action]  ExecuteSQL(sql=SELECT s.first_name, s.middle_name, s.last_name, s.student_id FROM Students s JOIN Student_Enrolment se ON s.student_id = se.student_id GROUP BY s.student_id, se.semester_id HAVING COUNT(DISTINCT se.degree_program_id) = 2)
+[Result]  [('Frida', 'Aisha', 'Huel', 7)]
+
+--- TURN 3 ---
+[Thought] The query returned the student enrolled in 2 degree programs in one semester.
+[Action]  Done()
+[Result]  Task Complete
+
+======================================================================
+Predicted SQL : SELECT s.first_name, s.middle_name, s.last_name, s.student_id FROM Students s JOIN Student_Enrolment se ON s.student_id = se.student_id GROUP BY s.student_id, se.semester_id HAVING COUNT(DISTINCT se.degree_program_id) = 2
+Gold SQL      : SELECT T1.first_name ,  T1.middle_name ,  T1.last_name ,  T1.student_id FROM Students AS T1 JOIN Student_Enrolment AS T2 ON T1.student_id  =  T2.student_id GROUP BY T1.student_id HAVING count(*)  =  2
+Execution match with gold : False
+Turns used: 4 | used FindShortestPath: True | recovered from an SQL error: False
+======================================================================

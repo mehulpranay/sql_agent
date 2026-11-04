@@ -1,0 +1,7 @@
+openai
+sentence-transformers
+scikit-learn
+networkx
+numpy
+pandas
+datasets

@@ -1,0 +1,500 @@
+   31  git add .
+   32  git commit -m 'fix readme image paths and screenshots'
+   33  git push
+   34  cd SQL-generator
+   35  git add .
+   36  git commit -m 'screenshot resolution'
+   37  git push
+   38  cd nl2sql-demo
+   39  git add .
+   40  git commit -m 'updated readme agentic removed'
+   41  git push
+   42  cd SQL-generator
+   43  cd C:\
+   44  cd C:/
+   45  cd C:/Users
+   46  cd mehul
+   47  cd C:/Users/mehul
+   48  cd SQL-generator
+   49  git add . 
+   50  git commit -m 'updated readme agentic removed'
+   51  git push
+   52  cd SQL-generator
+   53  git add .
+   54  git commit -m 'explanation were made better'
+   55  git push
+   56  git add .
+   57  git commit -m 'blog link added'
+   58  git push
+   59  cd SQL-generator
+   60  git add .
+   61  git commit -m 'revised readme, detailed why nl2sql'
+   62  git push
+   63  git add .
+   64  git commit -m 'agentic version inlcude'
+   65  git push
+   66  git add .
+   67  git commit -m "add blog notebook"
+   68  git push
+   69  cd
+   70  cd SQL-generator
+   71  git add . 
+   72  git commit -m 'update blog and agents notebook'
+   73  git push origin main
+   74  git add .
+   75  git commit -m 'changes'
+   76  git push
+   77  git pull origin main
+   78  git commit -no--edit
+   79  git commit --no-edit
+   80  git status
+   81  git push origin main
+   82  cd SQL-generator
+   83  git status
+   84  git add .
+   85  git commit -m 'langraph agents added'
+   86  git push origin main
+   87  cd SQL-generator
+   88  git add . 
+   89  git status
+   90  git commit -m 'add interactive t2s notebooks'
+   91  git push origin main
+   92  [A
+   93  git pull origin main --no-edit
+   94  git push origin main
+   95  git add .
+   96  git commit -m 'name of the folder changed'
+   97  git push origin main
+   98  echo 'export OPENAI_API_KEY="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"' >> ~/.bashrc
+   99  echo 'export OPENAI_API_KEY="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"' >> ~/.bashrc
+  100  echo 'export TAVILY_API_KEY="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"' >> ~/.bashrc
+  101  echo $OPENAI_API_KEY
+  102  echo $TAVILY_API_KEY
+  103  python test_full_pipeline.py
+  104  cd Desktop
+  105  cd MarketEngine
+  106  python test_full_pipeline.py
+  107  cd Desktop
+  108  ls
+  109  cd Cricket\ prediction\ Engine\ +\ Backtesting/
+  110  git init
+  111  git add .
+  112  git commit -m 'Part B: Cricket prediction engine + backtest'
+  113  git branch -M main
+  114  pip install pygame-ce --trusted-host pypi.org --trusted-host files.pythonhosted.org
+  115  pip install flappy-bird-gymnasium --no-deps
+  116  pip install gymnasium
+  117  cd Desktop
+  118  ls
+  119  cd Flappy_Bird_training_rl/
+  120  python env.py
+  121  python env.py
+  122  python env.py
+  123  python env.py
+  124  import random
+  125  random.randn(10)
+  126  1+2
+  127  python
+  128  python env.py
+  129  python env.py
+  130  python env.py
+  131  python env.py
+  132  python env.py
+  133  cd Desktop
+  134  cd MarketEngine
+  135  python test_pipeline.py
+  136  ls
+  137  cd engine
+  138  ls
+  139  cd v2_entertainment_engine/
+  140  python test_pipeline.py
+  141  cd Desktop
+  142  cd MarketEngine
+  143  cd engine
+  144  cd v2_entertainment_engine/
+  145  python movie_extractor.py
+  146  python movie_extractor.py
+  147  python context_enrichment.py 
+  148  python context_enrichment.py 
+  149  python tier1_bookings.py 
+  150  python tier1_bookings.py 
+  151  python tier1_bookings.py 
+  152  python tier1_bookings.py 
+  153  python tier1_bookings.py 
+  154  python tier2_bookings.py 
+  155  python tier2_bookings.py 
+  156  nano ~/.bashrc
+  157  source ~/.bashrc
+  158  source ~/.bashrc
+  159  echo $DS_API_KEY
+  160  nano ~/.bashrc
+  161  source ~/.bashrc
+  162  nano ~/.bashrc
+  163  nano ~/.bashrc
+  164  source ~/.bashrc
+  165  nano ~/.bashrc
+  166  source ~/.bashrc
+  167  unset DEEPSEEK_API_KEY
+  168  unset DS_API_KEY
+  169  echo 'export DEEPSEEK_API_KEY="sk-5708dd5bfe9541178214780e0923de75"' >> ~/.bashrc
+  170  source ~/.bashrc
+  171  echo $DEEPSEEK_API_KEY
+  172  cd Desktop
+  173  cd MarketEngine
+  174  cd engine
+  175  cd v2_entertainment_engine/
+  176  python test_deep_seek.py 
+  177  python test_deep_seek.py 
+  178  cd Desktop\MarketEngine
+  179  cd Desktop/MarketEngine
+  180  cd engine
+  181  cd v2_entertainment_engine/
+  182  cd Desktop\MarketEngine\engine
+  183  cd Desktop\MarketEngie
+  184  cd Desktop\MarketEngine
+  185  cd Desktop\MarketEngine
+  186  cd Desktop/MarketEngine
+  187  cd engine
+  188  cd v2_entertainment_engine/
+  189  python test_tier2.py
+  190  python test_tier2.py
+  191  python test_tier2.py
+  192  python test_tier2.py
+  193  cd Desktop
+  194  cd MarketEngine/
+  195  cd mock_scripts/
+  196  python tool_def.py
+  197  python tool_def.py
+  198  python tool_def.py
+  199  python tool_def.py
+  200  python tool_def.py
+  201  python tool_def.py
+  202  cd ..
+  203  cd engine/v2_entertainment_engine/
+  204  python test_tier2_bookings.py 
+  205  python trade_projections.py 
+  206  cd Desktop/MarketEngine/engine
+  207  cd v2_entertainment_engine/
+  208  python trade_projections.py
+  209  cd Desktop/MarketEngine/engine/v2_entertainment_engine/
+  210  python trade_projections.py 
+  211  python trade_projections.py 
+  212  python trade_projections.py 
+  213  python
+  214  import date
+  215  from datetime import date
+  216  python
+  217  python
+  218  cd Desktop/MarketEngine/engine/v2_entertainment_engine/
+  219  python market_builder.py 
+  220  pgrep -fl "sleep"
+  221  ps aux | grep sleep
+  222  ps aux | grep cricket_engine.py
+  223  pidof sleep
+  224  cd Desktop/MarketEngine/engine/v2_entertainment_engine/
+  225  python market_builder.py 
+  226  python market_builder.py 
+  227  python market_builder.py 
+  228  python market_builder.py
+  229  python db_storage.py 
+  230  python daily_create.py 
+  231  python tier1_resolver.py 
+  232  python tier1_resolver.py 
+  233  python daily_resol.py
+  234  python db_storage.py 
+  235  python daily_resol.py
+  236  python daily_resol.py
+  237  python daily_create.py.py
+  238  python daily_create.py
+  239  python daily_create.py --dry-run
+  240  cd ..
+  241  cd ..
+  242  cd ..
+  243  cd MarketEngine/
+  244  cd cricket_engine/
+  245  python cricket_engine.py 
+  246  python cricket_engine.py 
+  247  export RAPID_API_KEY = "e2a44a97d2mshb4c76758df3d610p1065ebjsnb731792f5363"
+  248  nano ~/.bashrc
+  249  source ~/.bashrc
+  250  echo $RAPID_API_KEY
+  251  cd Desktop/
+  252  cd MarketEngine/
+  253  python cricket_engine/
+  254  python cricket_engine.py
+  255  cd cricket_engine/
+  256  python cricket_engine.py 
+  257  source ~/.bashrc
+  258  echo $RAPID_API_KEY
+  259  cd Desktop/MarketEngine/cricket_engine/
+  260  python cricket_engine.py 
+  261  python cricket_engine.py 
+  262  python cricket_engine.py 
+  263  python backtesting.py 
+  264  curl -L -o all_json.zip https://cricsheet.org/downloads/all_json.zip
+  265  python -m zipfile -e all_json.zip cricsheet_json      # or: unzip -q all_json.zip -d cricsheet_json
+  266  ls cricsheet_json | head                              # should show numeric names like 1000851.json
+  267  python backtest.py --data-dir cricsheet_json --n 250
+  268  python backtest.py --data-dir cricsheet_json --n 5
+  269  python backtest.py --data-dir cricsheet_json --n 250
+  270  pip install scikit-learn
+  271  python -m pip install -U matplotlib
+  272  pip install matplotlib
+  273  python backtest.py --data-dir cricsheet_json --n 250
+  274  printf '\ncricsheet_json/\nall_json.zip\n__pycache__/\n*.pyc\n.env\n' >> .gitignore
+  275  git status --short | wc -l           # should now be a handful, not 22,000
+  276  git check-ignore -v cricsheet_json/1000851.json    # confirms which rule is ignoring it
+  277  python backtest.py --data-dir cricsheet_json --n 250
+  278  python backtesting.py --fill-swaps --n 700
+  279  python backtesting.py --swap-teams --after <cutoff> --db backtest_deepseek_postcutoff.db --n 250
+  280  python backtest.py --fill-swaps --n 700
+  281  python backtest.py --swap-teams --after <cutoff> --db backtest_deepseek_postcutoff.db --n 250
+  282  python backtest.py --eval-only --calibration-experiment
+  283  python backtest.py --eval-only --calibration-experiment --prob-source avg   # order-averaged probability
+  284  cd Desktop/
+  285  cd MarketEngine/
+  286  cd engine/
+  287  cd ..
+  288  cd cricket_engine/
+  289  python cricket_engine.py 
+  290  python backtesting.py --eval-only --calibration-experiment
+  291  python backtesting.py --eval-only --calibration-experiment --prob-source avg   # order-averaged probability
+  292  python backtest.py --eval-only --calibration-experiment
+  293  python backtest.py --eval-only --calibration-experiment --prob-source avg   # order-averaged probability
+  294  cd Desktop/
+  295  cd MarketEngine/
+  296  cd engine/
+  297  cd ..
+  298  cd cricket_engine/
+  299  cd Desktop/
+  300  cd MarketEngine/
+  301  cd cricket_engine/
+  302  python backtesting.py --db backtest_deepseek.db --eval-only --calibration-experiment
+  303  python backtesting.py --db backtest_deepseek.db --eval-only --calibration-experiment --prob-source avg
+  304  cd Desktop/
+  305  cd MarketEngine/
+  306  cd engine/
+  307  cd ..
+  308  cd cricket_engine/
+  309  python backtesting.py --calibration-only
+  310  python backtesting.py --data-dir cricsheet_json --n 250
+  311  python backtesting.py --data-dir cricsheet_json --n 250
+  312  python backtesting.py --data-dir cricsheet_json --n 250
+  313  python backtesting.py --data-dir cricsheet_json --n 250
+  314  python backtesting.py --data-dir cricsheet_json --n 250
+  315  python backtesting.py --calibration-only
+  316  python backtesting.py --calibration-only
+  317  python backtesting.py --eval-only
+  318  pip install xgboost
+  319  python xgb_baseline.py --data-dir /path/to/cricsheet_json --db backtest_deepseek.db
+  320  python xgb_baseline.py --data-dir /path/to/[A_json --db backtest_deepseek.db
+  321  python
+  322  python backtesting.py --data-dir <cricsheet_json> --db backtest_deepseek_noseries.db --match-ids-from backtest_deepseek.db --n 2000
+  323  python backtesting.py --eval-only --db backtest_deepseek_noseries.db --compare-with backtest_deepseek.db
+  324  python backtesting.py --calibration-only --db backtest_deepseek_noseries.db
+  325  python backtesting.py --eval-only --db backtest_deepseek_noseries.db
+  326  python backtesting.py -h
+  327  python backtesting.py -h
+  328  python backtesting.py -h
+  329  python backtesting.py --data-dir "<cricksheet_json>" --db backtest_deepseek_noseries.db --match-ids-from backtest_deepseek.db --n 2000
+  330  python backtesting.py --data-dir "C:\Users\Mehul\cricsheet\all_json" --db backtest_deepseek_noseries.db --match-ids-from backtest_deepseek.db --n 2000
+  331  python backtesting.py --data-dir "C:\Users\Mehul\cricsheet_json\all_json" --db backtest_deepseek_noseries.db --match-ids-from backtest_deepseek.db --n 2000
+  332  python backtesting.py --data-dir "C:\Desktop\MarketEngine\cricket_engine\all_json" --db backtest_deepseek_noseries.db --match-ids-from backtest_deepseek.db --n 2000
+  333  python backtesting.py --data-dir "C:\Users\Mehul\Desktop\MarketEngine\cricket_engine\all_json" --db backtest_deepseek_noseries.db --match-ids-from backtest_deepseek.db --n 2000
+  334  python backtesting.py --data-dir "C:\Users\Mehul\Desktop\MarketEngine\cricket_engine\all_json" --db backtest_deepseek_noseries.db --match-ids-from backtest_deepseek.db --n 2000
+  335  ls backtest_deepseek.db
+  336  python backtesting.py -h
+  337  python backtesting.py --data-dir cricsheet_json --db backtest_deepseek_noseries.db --match-ids-from backtest_deepseek.db --n 2000
+  338  pip install xgboost scikit-learn pandas numpy
+  339  python xgb_baseline.py --data-dir cricsheet_json --db backtest_deepseek.db --cache cricsheet_meta.csv
+  340  python xgb_baseline.py --data-dir cricsheet_json --db backtest_deepseek.db --cache cricsheet_meta.csv
+  341  cd Desktop/
+  342  cd MarketEngine/
+  343  cd cricket_engine/
+  344  python
+  345  ls
+  346  python cricket_engine.py
+  347  python cricket_engine.py --selftest
+  348  python cricket_engine.py --selftest
+  349  python
+  350  import os
+  351  python
+  352  py --version
+  353  python
+  354  type -a python
+  355  py --version
+  356  py list
+  357  ls /c/Users/Mehul/AppData/Local/Python
+  358  python
+  359  python
+  360  echo 'export PATH="/c/Users/mehul/AppData/Local/Python/bin:$PATH"' >> ~/.bashrc
+  361  source ~/.bashrc
+  362  python --version
+  363  python cricket_engine.py --selftest
+  364  cd Desktop/MarketEngine/cricket_engine/
+  365  python cricket_engine.py --selftest
+  366  python cricket_engine.py --selftest
+  367  python cricket_engine.py --selftest
+  368  pip install requests
+  369  python cricket_engine.py --selftest
+  370  pip install openai
+  371  python cricket_engine.py --selftest
+  372  python
+  373  cd ..
+  374  ls
+  375  cd ..
+  376  ls
+  377  cd Test/
+  378  python helper.py
+  379  python main.py
+  380  cd Desktop/
+  381  cd MarketEngine/cricket_engine/
+  382  python cricket_engine.py --selftest
+  383  python cricket_engine.py --once
+  384  echo ~/.
+  385  bashrc ~/.
+  386  printenv
+  387  python cricket_engine.py --once
+  388  python replay.py 
+  389  pip install numpy
+  390  pip install pandas
+  391  python replay.py 
+  392  import sklearn
+  393  pip install scikit-learn
+  394  python replay.py 
+  395  pip install matplotlib
+  396  python replay.py 
+  397  python replay.py 
+  398  python replay.py 
+  399  python replay.py 
+  400  python replay.py 
+  401  python replay.py 
+  402  python replay.py 
+  403  python replay.py 
+  404  python replay.py 
+  405  python replay.py 
+  406  python replay.py --db backtest_deepseek.db --seed 3
+  407  python replay.py --db backtest_deepseek.db --plot reliability_replay.png --count 0
+  408  cd MarketEngine
+  409  cd Desktop/
+  410  cd MarketEngine/
+  411  cd cricket_engine/
+  412  python cricket_engine.py --once --smart --db data/predictions.db
+  413  mkdir data
+  414  python cricket_engine.py --once --smart --db data/predictions.db
+  415  python cricket_engine.py --once --smart --db data/predictions.db
+  416  ==================================================
+  417  Pipeline run: 2026-10-24T05:44:47.254468+00:00
+  418  ==================================================
+  419  [Pass 1] Fetching & creating upcoming markets...
+  420  Found 1 target upcoming matches.
+  421  Generating market for: New Zealand vs India (India tour of New Zealand 2026)
+  422  Created market #161201: Will New Zealand win this match against India?
+  423  [Pass 2] Checking open markets for betting lock...
+  424  [Pass 3] Checking locked markets for resolution...
+  425  Nothing to resolve right now (no scorecard calls made).
+  426  python build_site.py --db data/predictions.db --out docs
+  427  set
+  428  printenv
+  429  cd D
+  430  cd Desktop/
+  431  ls
+  432  cd Cricket prediction Engine + Backtesting
+  433  cd "Cricket prediction Engine + Backtesting"/
+  434  grep -rIl "e2a44a"
+  435  grep -rIn "sk-"
+  436  env
+  437  cd Desktop/
+  438  cd "Cricket prediction Engine + Backtesting"/
+  439  ls -la
+  440  print env
+  441  env
+  442  python
+  443  cd Desktop/
+  444  cd MarketEngine/q
+  445  cd MarketEngine/
+  446  cd cricket_engine/
+  447  ls
+  448  python backtesting.py --eval-only
+  449  python backtesting.py --eval-only --calibration-experiment
+  450  python backtesting.py --calibration-experiment
+  451  python backtesting.py --calibration-only
+  452  cd Desktop/
+  453  cd MarketEngine/
+  454  cd cricket_engine/
+  455  cd .
+  456  cd ..
+  457  cd ..
+  458  ls
+  459  cricket-prediction-engine/
+  460  cd cricket-prediction-engine/
+  461  python backtesting.py --calibration-only
+  462  cd Desktop/
+  463  cd sql_agent/
+  464  python preprocessing.py
+  465  pip install networkx
+  466  python preprocessing.py
+  467  pip install datasets
+  468  python preprocessing.py
+  469  pip install pyyaml --no-binary :all: --config-settings="--global-option=--no-libyaml"
+  470  winget install Python.Python.3.12
+  471  py -3.12 -m venv .venv
+  472  source .venv/Scripts/activate
+  473  python -m pip install --upgrade pip
+  474  pip install datasets sentence-transformers scikit-learn networkx numpy openai
+  475  pip install kagglehub
+  476  python -c 'import kagglehub; print(kagglehub.dataset_download("jeromeblanchet/yale-universitys-spider-10-nlp-dataset"))'
+  477  export SPIDER_DB_PATH="C:/Users/mehul/.cache/kagglehub/datasets/jeromeblanchet/yale-universitys-spider-10-nlp-dataset/versions/1/spider/database"
+  478  [200~python preprocessing.py~
+  479  python preprocessing.py
+  480  python runtime_tools.py
+  481  python agent_demo.py
+  482  cd Desktop/
+  483  cd sql_agent/
+  484  python agent_demo.py --index 3 
+  485  source .venv/Scripts/activate
+  486  python agent_demo.py --index 3 
+  487  echo "$SPIDER_DB_PATH"
+  488  ls "$SPIDER_DB_PATH/../dev.json"
+  489  export SPIDER_DB_PATH="/c/Users/mehul/.cache/kagglehub/datasets/jeromeblanchet/yale-universitys-spider-10-nlp-dataset/versions/1/spider/database"
+  490  source .venv/Scripts/activate
+  491  python agent_demo.py --index 3 
+  492  cd Desktop/
+  493  cd sql_agent/
+  494  python agent_demo.py --index 75
+  495  source .venv/Scripts/activate
+  496  python agent_demo.py --index 75
+  497  echo "$SPIDER_DB_PATH"
+  498  ls "$SPIDER_DB_PATH/../dev.json"
+  499  find /c/Users/mehul -name concert_singer.sqlite 2>/dev/null
+  500  setx SPIDER_DB_PATH "C:/Users/mehul/.cache/kagglehub/datasets/jeromeblanchet/yale-universitys-spider-10-nlp-dataset/versions/1/spider/database"
+  501  echo "$SPIDER_DB_PATH"
+  502  ls "$SPIDER_DB_PATH/../dev.json"
+  503  cd Desktop
+  504  cd sql_agent/
+  505  source .venv/Scripts/activate
+  506  python agent_demo.py --index 75
+  507  python agent_demo.py --index 6
+  508  python agent_demo.py --index 89
+  509  python agent_demo.py --index 147
+  510  python agent_demo.py --index 439
+  511  python agent_demo.py --index 798
+  512  python agent_demo.py --index 744
+  513  python agent_demo.py --index 113
+  514  python agent_demo.py --index 533
+  515  python agent_demo.py --index 549
+  516  sudo apt install enscript ghostscript  # For Debian/Ubuntu
+  517  sudo dnf install enscript ghostscript  # For RHEL/Fedora
+  518  # 1. Format your command output into a printable format
+  519  ls -la | pr -h "Terminal Output" > output.ps
+  520  # 2. Convert it directly to PDF using standard utilities
+  521  pstopdf output.ps output.pdf
+  522  ls -la | pr -h "Terminal Output" > output.ps
+  523  pstopdf output.ps output.pdf
+  524  cp output.txt /mnt/c/Users/mehul/Desktop/ 
+  525  ls -la > /mnt/c/Users/mehul/Desktop/terminal_output.txt
+  526  ls /mnt/c/Users/
+  527  pip install fpdf2
+  528  ls -la > output.txt
+  529  python -c "from fpdf import FPDF; pdf=FPDF(); pdf.add_page(); pdf.set_font('Courier', size=10); [pdf.cell(0, 5, txt=line.rstrip(), ln=True) for line in open('output.txt', errors='ignore')]; pdf.output('terminal_output.pdf')"
+  530  history > past_runs.txt
