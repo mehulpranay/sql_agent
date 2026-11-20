@@ -1,0 +1,230 @@
+--- a/runtime_tools.py
++++ b/runtime_tools.py
+@@ -27,10 +27,9 @@
+ from itertools import combinations
+ import networkx as nx
+ import numpy as np
+-from sentence_transformers import SentenceTransformer
+ 
+-# Must be the same model preprocessing.py used to build the stored column embeddings.
+-EMBEDDING_MODEL = 'sentence-transformers/all-MiniLM-L6-v2'
++from embedder import EMBEDDING_MODEL, encode       # the model itself lives in embedder.py
++from safe_sql import UnsafeSQLError, check_read_only, connect_read_only, resolve_db_path
+ 
+ DB_BASE_PATH = os.environ.get(
+     'SPIDER_DB_PATH',
+@@ -38,9 +37,6 @@
+ )
+ SCHEMA_PKL_PATH = os.environ.get('SCHEMA_PKL_PATH', 'spider_schema_lookup.pkl')
+ 
+-# Load once globally, not inside the function
+-model = SentenceTransformer(EMBEDDING_MODEL)
+-
+ 
+ def search_column(query, col_dicts, embeddings, topk=5):
+     """
+@@ -49,7 +45,7 @@
+     embeddings: np.array (n_cols, 384) for this DB, row i belongs to col_dicts[i]
+     topk: number of results per query term
+ 
+-    Queries are embedded with the module-level `model` (same one used in preprocessing.py).
++    Queries are embedded by embedder.encode (the same model preprocessing.py used).
+ 
+     Returns: dict {query_term: [result, ...]} for several terms, or the list directly if
+     there is a single term. Each result is {'column', 'format', 'table', 'statistics'}.
+@@ -67,7 +63,7 @@
+         desc = f"a column about {q_norm}."
+ 
+         # Encode query
+-        query_vec = model.encode(desc)   # numpy array
++        query_vec = encode(desc)   # numpy array
+         query_vec_norm = query_vec / np.linalg.norm(query_vec)
+ 
+ 
+@@ -147,10 +143,11 @@
+     STOP_WORDS = {'the', 'a', 'an', 'of', 'in', 'at', 'by', 'for',
+                   'with', 'about', 'activity', 'area', 'type', 'name'}
+ 
+-    # Connect to DB
+-    db_path = os.path.join(db_base_path, db_id, f"{db_id}.sqlite")
+-    conn = sqlite3.connect(db_path)
+-    conn.text_factory = lambda b: b.decode(errors='ignore')
++    # Connect to DB (read-only, and db_id cannot point outside the databases folder)
++    try:
++        conn = connect_read_only(resolve_db_path(db_base_path, db_id))
++    except UnsafeSQLError as e:
++        return str(e)
+     cursor = conn.cursor()
+ 
+     # Tokenize
+@@ -180,7 +177,11 @@
+             if col_dic['column_type'] in ('text', 'others'):
+                 search_list.append((col_dic['table_name'], col_dic['column_name']))
+ 
++    timed_out = False
++
+     for token in tokens:
++        if timed_out:
++            break
+         for search_window in search_list:
+             t = search_window[0]
+             c = search_window[1]
+@@ -205,12 +206,17 @@
+                         temp['column'] = c
+                         list_of_contents.append(temp)
+             except Exception as e:
++                if 'interrupted' in str(e).lower():     # the time limit in safe_sql.py was reached
++                    timed_out = True
++                    break
+                 print(f"[search_value] query failed on {t}.{c}: {e}")
+                 continue
+ 
+     conn.close()
+ 
+     if not list_of_contents:
++        if timed_out:
++            return "The search took too long. Narrow it by passing a table and a column."
+         return "No matching values found."
+ 
+     return list_of_contents
+@@ -268,22 +274,37 @@
+     return list_of_paths
+ 
+ 
+-def ExecuteSQL(sql: str, db_id: str, db_base_path: str):
++def ExecuteSQL(sql: str, db_id: str, db_base_path: str, max_rows: int = None):
++    """
++    Run one read-only query. Returns ('Successful', rows) or ('Unsuccessful', error message).
++
++    max_rows: stop reading after this many rows (None = read everything, which evaluation needs
++    so that it compares complete results). The database also stops the query after
++    SQL_TIMEOUT_S seconds (see safe_sql.py), and that comes back as an 'Unsuccessful' error the
++    agent can read and react to.
++    """
++
++    # Layer 1: is this one plain read query? Layer 3: is db_id a real database in our folder?
++    try:
++        check_read_only(sql)
++        db_path = resolve_db_path(db_base_path, db_id)
++    except UnsafeSQLError as e:
++        return ('Unsuccessful', f'Blocked: {e}')
+ 
+-    # Connect to DB
+-    db_path = os.path.join(db_base_path, db_id, f"{db_id}.sqlite")
+-    conn = sqlite3.connect(db_path)
+-    conn.text_factory = lambda b: b.decode(errors='ignore')
++    # Layer 2: a read-only connection, so the database refuses writes even if the checks above missed one
++    conn = connect_read_only(db_path)
+     cursor = conn.cursor()
+ 
+     try:
+-        cursor.execute(sql
+-        )
+-        rows = cursor.fetchall()
++        cursor.execute(sql)
++        rows = cursor.fetchall() if max_rows is None else cursor.fetchmany(max_rows)
+         return ('Successful',rows)
+ 
+     except Exception as e:
+         error_msg = str(e)
++        if 'interrupted' in error_msg.lower():
++            error_msg = ('The query was stopped because it ran too long. Make it cheaper: '
++                         'add join conditions, filter earlier, or select fewer columns.')
+         return ( 'Unsuccessful',error_msg)
+ 
+     finally:
+--- a/agent_demo.py
++++ b/agent_demo.py
+@@ -29,6 +29,7 @@
+ import os
+ import copy
+ import json
++import time
+ import pickle
+ import random
+ import argparse
+@@ -45,6 +46,20 @@
+ MODEL = os.environ.get('DEEPSEEK_MODEL', 'deepseek-flash')
+ MAX_TURNS = 12
+ 
++# Limits that keep one question from using unlimited time, memory or tokens.
++MAX_SECONDS = float(os.environ.get('MAX_SECONDS', '90'))   # whole question, all turns together
++LLM_TIMEOUT_S = 30                  # one call to the model; the SDK retries transient failures twice
++MAX_ROWS = 1000                     # rows read from the database per query (the model still sees 10)
++MAX_OBSERVATION_CHARS = 4000        # longest tool result we put into the model's context
++
++
++def limit_text(text, limit=MAX_OBSERVATION_CHARS):
++    """Cut a tool result to `limit` characters so one huge cell or list cannot flood the context."""
++    text = str(text)
++    if len(text) <= limit:
++        return text
++    return text[:limit] + f' ...(cut: {len(text) - limit} more characters)'
++
+ 
+ # ----------------------------------------------------------------------------
+ # prompt + tool definitions
+@@ -223,7 +238,7 @@
+     api_key = os.environ.get('DEEPSEEK_API_KEY')
+     if not api_key:
+         raise SystemExit('DEEPSEEK_API_KEY is not set in the environment.')
+-    return OpenAI(api_key=api_key, base_url=BASE_URL)
++    return OpenAI(api_key=api_key, base_url=BASE_URL, timeout=LLM_TIMEOUT_S, max_retries=2)
+ 
+ 
+ # ----------------------------------------------------------------------------
+@@ -244,9 +259,15 @@
+     last_sql = None
+     sql_status = 'SQL never generated'
+     turn = 0
++    started = time.monotonic()
++    hit_time_limit = False
+ 
+     while turn < MAX_TURNS:
+ 
++        if time.monotonic() - started > MAX_SECONDS:      # whole-question time limit
++            hit_time_limit = True
++            break
++
+         response = client.chat.completions.create(
+             model=MODEL,
+             messages=messages,
+@@ -297,11 +318,15 @@
+ 
+             elif tool_name == 'ExecuteSQL':
+                 last_sql = args['sql']
+-                sql_status, rows = ExecuteSQL(sql=last_sql, db_id=db_id, db_base_path=db_base_path)
++                # ask for one row more than MAX_ROWS, so we can tell "exactly MAX_ROWS" from "more"
++                sql_status, rows = ExecuteSQL(sql=last_sql, db_id=db_id, db_base_path=db_base_path,
++                                              max_rows=MAX_ROWS + 1)
+                 step['sql_status'] = sql_status
+ 
+                 if sql_status != 'Successful':
+                     observation = f'SQL Error: {rows}'              # error feedback to the model
++                elif len(rows) > MAX_ROWS:
++                    observation = f'{rows[:10]}....more than {MAX_ROWS} rows, showing first 10'
+                 elif len(rows) > 10:
+                     observation = f'{rows[:10]}....{len(rows)} total rows, showing first 10'
+                 else:
+@@ -317,10 +342,11 @@
+         except Exception as e:
+             observation = f'Tool call failed: {e}'
+ 
+-        step['observation'] = str(observation)
++        observation = limit_text(observation)       # one place that bounds what enters the context
++        step['observation'] = observation
+         trace.append(step)
+ 
+-        messages.append({'role': 'tool', 'content': str(observation), 'tool_call_id': tool_id})
++        messages.append({'role': 'tool', 'content': observation, 'tool_call_id': tool_id})
+ 
+         # every tool_call_id needs an answer, even if the model ignored "one tool at a time"
+         for extra in message.tool_calls[1:]:
+@@ -339,6 +365,7 @@
+         'sql_status': sql_status,
+         'turns_used': turn,
+         'hit_max_turns': turn == MAX_TURNS,
++        'hit_time_limit': hit_time_limit,
+         'trace': trace,
+         'conversation': messages,
+     }

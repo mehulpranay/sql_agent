@@ -1,0 +1,30 @@
+# Keep the build context small and keep secrets out of the image.
+# (The Dockerfile copies files by name, so this is a second line of defence.)
+
+.git
+.gitignore
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# secrets
+.env
+.env.*
+
+# not needed to run the service
+tests/
+conftest.py
+runs/
+README.md
+past_runs.txt
+output.*
+terminal_output.pdf
+preprocessing.py
+make_demo_assets.py
+requirements.txt
+
+# the big files that live only on your machine
+/spider/
+dev.json
+/spider_schema_lookup.pkl

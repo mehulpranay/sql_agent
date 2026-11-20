@@ -1,0 +1,12 @@
+# Libraries the running service needs (requirements.txt is the larger development set).
+# numpy, networkx and sentence-transformers are pinned by demo_assets/constraints.txt, which
+# make_demo_assets.py writes from the versions that built the schema lookup.
+# torch is installed separately in the Dockerfile (the small CPU-only build).
+
+sentence-transformers
+numpy
+networkx
+openai==3.46.0
+fastapi==0.162.2
+uvicorn==0.54.0
+sqlglot==30.30.0
